@@ -1,13 +1,24 @@
 manifest:
   remotes:
-    - name: zmkfirmware
+    - name: zmkfirmware # zmk
       url-base: https://github.com/zmkfirmware
-    # Additional modules containing boards/shields/custom code can be listed here as well
-    # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
+    - name: duckyb # urchin hw
+      url-base: https://github.com/duckyb
+    - name: dhruvinsh # tri-state module
+      url-base: https://github.com/dhruvinsh
   projects:
+    # official
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    # board/shield for the urchin kb
+    - name: urchin-zmk-module
+      remote: duckyb
+      revision: main
+    # tri-state (basically swapper from the QMK/Callum)
+    - name: zmk-tri-state
+      remote: dhruvinsh
+      revision: main
   self:
     path: config
