@@ -25,11 +25,12 @@
 #define LA_EXTRA &tog EXTRA
 
 &caps_word {
-    continue-list = <MINUS BSPC DEL UNDER>;
+    continue-list = <MINUS BSPC DEL UNDER F22>; // F22 is required for layers
 };
 
 &sk {
     release-after-ms = <100000000>; // indefinite
+    quick-release; // modifiers are ignored so that would not become a problem
 	ignore-modifiers;
 };
 
@@ -87,7 +88,7 @@
             label = "alt tab";
             #binding-cells = <0>;
             bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-            ignored-key-positions = <2 10 32>;
+            ignored-key-positions = <10 32>; // left hand shift, right thumb shift
         };
 
         swl: swap_language {
@@ -95,7 +96,7 @@
             label = "switch language";
             #binding-cells = <0>;
             bindings = <&kt LGUI>, <&kp SPACE>, <&kt LGUI>;
-            ignored-key-positions = <1 10 32>;
+            ignored-key-positions = <10 32>;
         };
 
         swt: swap_tab {
@@ -103,7 +104,7 @@
             label = "switch tabs";
             #binding-cells = <0>;
             bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
-            ignored-key-positions = <3 10 32>;
+            ignored-key-positions = <10 32>;
         };
     };
 
@@ -162,7 +163,7 @@
 			label = "EXTRA";
 			bindings = <
 			&bootloader XXX /*WH_D*/ XXX /*MS_U*/ XXX /*WH_U*/ XXX                 &kp C_BRI_UP &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bootloader
-			&sys_reset  XXX /*MS_L*/ XXX /*MS_D*/ XXX /*MS_R*/ &mkp MB4            &kp C_BRI_DN &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 &sys_reset
+			&sys_reset  XXX /*MS_L*/ XXX /*MS_D*/ XXX /*MS_R*/ &mkp MB4            &kp C_BRI_DN &bt BT_SEL 3 &bt BT_SEL 4 XXX          &sys_reset
 			XXX         &mkp MB1     &mkp MB3     &mkp MB2     &mkp MB5            XXX          &bt BT_CLR   XXX          LA_EXTRA     &unstick
 				                                               XXX XXX             XXX XXX
 			>;
