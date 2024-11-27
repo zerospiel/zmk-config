@@ -22,6 +22,7 @@
 #define CMDX     &kp LG(X)
 #define CMDC     &kp LG(C)
 #define CMDV     &kp LG(V)
+#define SWPL     &kp LG(SPACE)
 #define LA_EXTRA &tog EXTRA
 
 &caps_word {
@@ -38,16 +39,22 @@
     combos {
         compatible = "zmk,combos";
         combo_weEsc {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             require-prior-idle-ms = <50>;
-            key-positions = <1 2>;
+            key-positions = <1 2>; // we
             bindings = <&kp ESC>;
         };
 
         combo_hjGJ {
-            timeout-ms = <50>;
-            key-positions = <15 16>;
+            timeout-ms = <30>;
+            key-positions = <15 16>; // hj
             bindings = <&kp LG(J)>;
+        };
+
+        combo_erEnt {
+            timeout-ms = <30>;
+            key-positions = <2 3>; // er
+            bindings = <&kp ENTER>;
         };
     };
 
@@ -91,13 +98,13 @@
             ignored-key-positions = <10 32>; // left hand shift, right thumb shift
         };
 
-        swl: swap_language {
-            compatible = "zmk,behavior-tri-state";
-            label = "switch language";
-            #binding-cells = <0>;
-            bindings = <&kt LGUI>, <&kp SPACE>, <&kt LGUI>;
-            ignored-key-positions = <10 32>;
-        };
+        // swl: swap_language {
+        //     compatible = "zmk,behavior-tri-state";
+        //     label = "switch language";
+        //     #binding-cells = <0>;
+        //     bindings = <&kt LGUI>, <&kp SPACE>, <&kt LGUI>;
+        //     ignored-key-positions = <10 32>;
+        // };
 
         swt: swap_tab {
             compatible = "zmk,behavior-tri-state";
@@ -105,6 +112,13 @@
             #binding-cells = <0>;
             bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
             ignored-key-positions = <10 32>;
+        };
+
+        tdbd: tap_dance_bt_disable {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&bt BT_DISC 0>, <&bt BT_DISC 1>, <&bt BT_DISC 2>, <&bt BT_DISC 3>, <&bt BT_DISC 4>;
         };
     };
 
@@ -141,7 +155,7 @@
 		nav_layer {
 			label = "NAV";
 			bindings = <
-			&kp TAB   &swl      &sww     &swt      &kp C_VOL_UP      &kp TILDE  ALTBSPC    CMDBSPC    &kp K_MUTE &kp DEL
+			&kp TAB   SWPL      &sww     &swt      &kp C_VOL_UP      &kp TILDE  ALTBSPC    CMDBSPC    &kp K_MUTE &kp DEL
 			&sk LSHFT &sk LCTRL &sk LALT &sk LGUI  &kp C_VOL_DN      &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &kp BSPC
 			CMDZ      CMDX      CMDC     CMDV      &kp C_PP          &caps_word &kp C_PREV &kp C_NEXT LA_EXTRA   &kp ENTER
 				                                        XXX ___      ___ ___
@@ -158,14 +172,14 @@
 			>;
 		};
 
-        // TODO: pull mouse changes? convert to tri-state just for the mouse?
+        // TODO: pull mouse changes?
 		extra_layer {
 			label = "EXTRA";
 			bindings = <
 			&bootloader XXX /*WH_D*/ XXX /*MS_U*/ XXX /*WH_U*/ XXX                 &kp C_BRI_UP &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bootloader
 			&sys_reset  XXX /*MS_L*/ XXX /*MS_D*/ XXX /*MS_R*/ &mkp MB4            &kp C_BRI_DN &bt BT_SEL 3 &bt BT_SEL 4 XXX          &sys_reset
-			XXX         &mkp MB1     &mkp MB3     &mkp MB2     &mkp MB5            XXX          &bt BT_CLR   XXX          LA_EXTRA     &unstick
-				                                               XXX XXX             XXX XXX
+			XXX         &mkp MB1     &mkp MB3     &mkp MB2     &mkp MB5            &tdbd        &bt BT_CLR   XXX          XXX          &unstick
+				                                           LA_EXTRA XXX            XXX LA_EXTRA
 			>;
 		};
     };
