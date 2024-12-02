@@ -39,23 +39,25 @@
     combos {
         compatible = "zmk,combos";
         combo_weEsc {
-            timeout-ms = <30>;
-            require-prior-idle-ms = <50>;
+            timeout-ms = <25>;
+            require-prior-idle-ms = <150>;
             key-positions = <1 2>; // we
             bindings = <&kp ESC>;
         };
 
         combo_hjGJ {
             timeout-ms = <30>;
+            require-prior-idle-ms = <150>;
             key-positions = <15 16>; // hj
             bindings = <&kp LG(J)>;
         };
 
-        combo_erEnt {
-            timeout-ms = <30>;
-            key-positions = <2 3>; // er
-            bindings = <&kp ENTER>;
-        };
+        // combo_erEnt {
+        //     timeout-ms = <30>;
+        //     require-prior-idle-ms = <150>;
+        //     key-positions = <2 3>; // er
+        //     bindings = <&kp ENTER>;
+        // };
     };
 
     macros {
