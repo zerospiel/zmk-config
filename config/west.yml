@@ -2,14 +2,16 @@ manifest:
   remotes:
     - name: zmkfirmware # zmk
       url-base: https://github.com/zmkfirmware
+    - name: zmk-zerospiel # zmk fork
+      url-base: https://github.com/zerospiel
     - name: duckyb # urchin hw
       url-base: https://github.com/duckyb
     - name: dhruvinsh # tri-state module
       url-base: https://github.com/dhruvinsh
   projects:
-    # official
+    # firmware
     - name: zmk
-      remote: zmkfirmware
+      remote: zmk-zerospiel
       revision: main
       import: app/west.yml
     # board/shield for the urchin kb
