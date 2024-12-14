@@ -3,6 +3,10 @@
 
 #include <dt-bindings/zmk/pointing.h>
 
+&mmv {
+  time-to-max-speed-ms = <500>;
+};
+
 &msc {
   time-to-max-speed-ms = <40>;
 };
